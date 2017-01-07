@@ -1,0 +1,38 @@
+{
+  "name": "vectorinspector",
+  "version": "1.0.0",
+  "description": "Mapbox GL JS plugin for inspecting vector data",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint index.js",
+    "watch": "mkdir -p dist && watchify index.js --standalone MapboxInspector -o dist/vectorinspector.js",
+    "build": "mkdir -p dist && browserify index.js --standalone MapboxInspector -o dist/vectorinspector.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasmartinelli/vectorinspector.git"
+  },
+  "keywords": [
+    "mapbox",
+    "gis",
+    "vector",
+    "leaflet",
+    "gl"
+  ],
+  "author": "Lukas Martinelli",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/lukasmartinelli/vectorinspector/issues"
+  },
+  "homepage": "https://github.com/lukasmartinelli/vectorinspector#readme",
+  "dependencies": {
+    "color": "^1.0.3",
+    "randomcolor": "^0.4.4"
+  },
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "eslint": "^2.8.0",
+    "eslint-config-mourner": "^2.0.1",
+    "uglify-js": "^2.4.24"
+  }
+}
