@@ -11,8 +11,8 @@ of the vector sources and allows hovering over features to see their properties.
 Make sure to include the CSS and JS files.
 
 ```html
-<script src='dist/mapbox-gl-inspect.js'></script>
-<link href='dist/mapbox-gl-inspect.css' rel='stylesheet' />
+<script src='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
+<link href='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />
 ```
 
 Add the inspector control to your map.
