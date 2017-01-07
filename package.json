@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint lib && eslint index.js",
     "watch": "mkdir -p dist && watchify index.js --debug -v --standalone MapboxInspector -o dist/vectorinspector.js",
-    "build": "mkdir -p dist && browserify index.js --standalone MapboxInspector | uglifyjs - --screw-ie8 --compress --mangle -o dist/vectorinspector.min.js"
+    "build": "mkdir -p dist && NODE_ENV=production browserify index.js --standalone MapboxInspector | uglifyjs - --screw-ie8 --compress --mangle -o dist/vectorinspector.min.js"
   },
   "repository": {
     "type": "git",
