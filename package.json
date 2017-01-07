@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint index.js",
-    "watch": "mkdir -p dist && watchify index.js --standalone MapboxInspector -o dist/vectorinspector.js",
+    "watch": "mkdir -p dist && watchify index.js --debug -v --standalone MapboxInspector -o dist/vectorinspector.js",
     "build": "mkdir -p dist && browserify index.js --standalone MapboxInspector -o dist/vectorinspector.js"
   },
   "repository": {
@@ -27,6 +27,8 @@
   "homepage": "https://github.com/lukasmartinelli/vectorinspector#readme",
   "dependencies": {
     "color": "^1.0.3",
+    "lodash.isequal": "^4.4.0",
+    "lodash.throttle": "^4.1.1",
     "randomcolor": "^0.4.4"
   },
   "devDependencies": {
