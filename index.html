@@ -19,7 +19,16 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibW9yZ2Vua2FmZmVlIiwiYSI6IjIzcmN0NlkifQ.0LRTNgCc-envt9d5MzR75w';
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+    style: {
+      version: 8,
+      layers: [],
+      sources: {
+        'composite': {
+          url:"mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v7",
+          type: 'vector'
+        }
+      }
+    },
     center: [-74.50, 40],
     zoom: 3,
     hash: true
