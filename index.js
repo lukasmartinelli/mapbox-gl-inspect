@@ -41,7 +41,6 @@ function MapboxInspector(options) {
     throw new Error("MapboxInspector needs to be called with the new keyword");
   }
   this.onAdd = function(map) {
-    console.log(stylegen);
     var originalStyle = emptyStyle;
     var inspectStyle = stylegen.generateInspectStyle(originalStyle, []);
     var watcher = new LayerWatcher({
