@@ -38,6 +38,21 @@ map.addControl(new MapboxInspector({
 }));
 ```
 
+You are able to control the generated colors and background of the inspection style.
+Check [`examples/custom-color-1.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-1.html) and [`examples/custom-color-2.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-2.html).
+
+```javascript
+var colors = ['#FC49A3', '#CC66FF', '#66CCFF', '#66FFCC', '#00FF00', '#FFCC66', '#FF6666', '#FF0000', '#FF8000', '#FFFF66', '#00FFFF'];
+map.addControl(new MapboxInspector({
+  backgroundColor: '#000',
+  assignLayerColor: function(layerId, alpha) {
+      //In more advanced coloring functions you use the layerId as seed value
+      var randomNumber = parseInt(Math.random() * colors.length);
+      return colors[randomNumber];
+	}
+}));
+```
+
 ## Develop
 
 Run linter and watch for changes to rebuild with browserify.
