@@ -4,7 +4,7 @@
   "description": "Mapbox GL JS plugin for inspecting vector data",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js",
+    "test": "eslint lib && eslint index.js",
     "watch": "mkdir -p dist && watchify index.js --debug -v --standalone MapboxInspector -o dist/vectorinspector.js",
     "build": "mkdir -p dist && browserify index.js --standalone MapboxInspector | uglifyjs - --screw-ie8 --compress --mangle -o dist/vectorinspector.min.js"
   },
@@ -34,5 +34,17 @@
     "eslint": "^2.8.0",
     "eslint-config-mourner": "^2.0.1",
     "uglify-js": "^2.4.24"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true
+    },
+    "extends": "mourner",
+    "rules": {
+      "indent": [2, 2]
+    }
   }
 }
