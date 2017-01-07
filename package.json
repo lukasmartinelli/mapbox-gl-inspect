@@ -1,16 +1,16 @@
 {
-  "name": "vectorinspector",
+  "name": "mapbox-gl-inspect",
   "version": "1.0.0",
   "description": "Mapbox GL JS plugin for inspecting vector data",
   "main": "index.js",
   "scripts": {
     "test": "eslint lib && eslint index.js",
-    "watch": "mkdir -p dist && watchify index.js --debug -v --standalone MapboxInspector -o dist/vectorinspector.js",
-    "build": "mkdir -p dist && NODE_ENV=production browserify index.js --standalone MapboxInspector | uglifyjs - --screw-ie8 --compress --mangle -o dist/vectorinspector.min.js"
+    "watch": "mkdir -p dist && watchify index.js --debug -v --standalone MapboxInspector -o dist/mapbox-gl-inspect.js",
+    "build": "mkdir -p dist && NODE_ENV=production browserify index.js --standalone MapboxInspector | uglifyjs - --screw-ie8 --compress --mangle -o dist/mapbox-gl-inspect.min.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lukasmartinelli/vectorinspector.git"
+    "url": "git+https://github.com/lukasmartinelli/mapbox-gl-inspect.git"
   },
   "keywords": [
     "mapbox",
@@ -22,9 +22,9 @@
   "author": "Lukas Martinelli",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/lukasmartinelli/vectorinspector/issues"
+    "url": "https://github.com/lukasmartinelli/mapbox-gl-inspect/issues"
   },
-  "homepage": "https://github.com/lukasmartinelli/vectorinspector#readme",
+  "homepage": "https://github.com/lukasmartinelli/mapbox-gl-inspect#readme",
   "dependencies": {
     "lodash.isequal": "^4.4.0",
     "randomcolor": "^0.4.4"
