@@ -1,8 +1,7 @@
-# Mapbox GL Inspect
+# Mapbox GL Inspect [![Build Status](https://travis-ci.org/lukasmartinelli/mapbox-gl-inspect.svg?branch=master)](https://travis-ci.org/lukasmartinelli/mapbox-gl-inspect)
 
 Add an inspect control to [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) to view all features
 of the vector sources and allows hovering over features to see their properties.
-
 
 ## Usage
 
@@ -18,7 +17,23 @@ Make sure to include the CSS and JS files.
 Add the inspector control to your map.
 
 ```javascript
-map.addControl(new MapboxInspector({ enabled: true }));
+map.addControl(new MapboxInspector());
+```
+
+Enable the inspection map by default.
+
+```javascript
+map.addControl(new MapboxInspector({
+  enabled: true
+}));
+```
+
+Disable the feature Popup in inspection mode.
+
+```javascript
+map.addControl(new MapboxInspector({
+  popupEnabled: false
+}));
 ```
 
 ## Develop
