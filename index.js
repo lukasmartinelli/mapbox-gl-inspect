@@ -1,6 +1,14 @@
 'use strict';
 var stylegen = require('./lib/stylegen');
 var LayerWatcher = require('./lib/layerwatcher');
+var InspectIcon = require('./lib/inspecticon');
+var MapIcon = require('./lib/mapicon');
+
+var emptyStyle = {
+  version: 8,
+  layers: [],
+  sources: []
+};
 
 function InspectToggle(opts) {
   var enabled = false;
@@ -8,9 +16,16 @@ function InspectToggle(opts) {
   var btn = document.createElement("button");
   btn.className = "mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in"
   btn.type = 'button'
+  btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(InspectIcon) + ')';
+
   btn['aria-label'] = 'Inspect'
   btn.onclick = function() {
     enabled = !enabled;
+    if(enabled) {
+      btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(MapIcon) + ')';
+    } else {
+      btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(InspectIcon) + ')';
+    }
     opts.onToggle(enabled);
     console.log('Enable inspect')
   }
@@ -27,12 +42,8 @@ function MapboxInspector(options) {
   }
   this.onAdd = function(map) {
     console.log(stylegen);
-    var inspectStyle = stylegen.generateInspectStyle({
-      version: 8,
-      layers: [],
-      sources: []
-    }, []);
-
+    var originalStyle = emptyStyle;
+    var inspectStyle = stylegen.generateInspectStyle(originalStyle, []);
     var watcher = new LayerWatcher({
       onSourcesChange: function(sources) {
         var coloredLayers = stylegen.generateColoredLayers(sources);
@@ -49,10 +60,11 @@ function MapboxInspector(options) {
     this._map = map;
     this._container = InspectToggle({
       onToggle: function(enable) {
-        console.log('Toggle', enable)
         if(enable) {
+          originalStyle = map.getStyle();
           map.setStyle(inspectStyle);
         } else {
+          map.setStyle(originalStyle);
         }
       }
     });
