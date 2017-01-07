@@ -30,10 +30,13 @@ var map = new mapboxgl.Map({
         }
       }
     },
-    center: [-74.50, 40], // starting position
-    zoom: 9 // starting zoom
+    center: [-74.50, 40],
+    zoom: 3,
+    hash: true
 });
-var inspector = new MapboxInspector();
+var inspector = new MapboxInspector({
+  enabled: true
+});
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(inspector);
 </script>

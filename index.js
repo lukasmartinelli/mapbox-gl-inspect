@@ -1,8 +1,7 @@
 'use strict';
 var stylegen = require('./lib/stylegen');
-var LayerWatcher = require('./lib/layerwatcher');
-var InspectIcon = require('./lib/inspecticon');
-var MapIcon = require('./lib/mapicon');
+var InspectToggle = require('./lib/InspectToggle');
+var isEqual = require('lodash.isequal');
 
 var emptyStyle = {
   version: 8,
@@ -10,78 +9,75 @@ var emptyStyle = {
   sources: {}
 };
 
-function InspectToggle(opts) {
-  var enabled = false;
-
-  var btn = document.createElement("button");
-  btn.className = "mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in"
-  btn.type = 'button'
-  btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(InspectIcon) + ')';
-
-  btn['aria-label'] = 'Inspect'
-  btn.onclick = function() {
-    enabled = !enabled;
-    if(enabled) {
-      btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(MapIcon) + ')';
-    } else {
-      btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(InspectIcon) + ')';
-    }
-    opts.onToggle(enabled);
-  }
-
-  var container = document.createElement('div');
-  container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-  container.appendChild(btn)
-  return container
-}
-
 function MapboxInspector(options) {
   if (!(this instanceof MapboxInspector)) {
     throw new Error("MapboxInspector needs to be called with the new keyword");
   }
-
-  var triggerAnalyze = null;
-
-  this.onAdd = function(map) {
-    var originalStyle = emptyStyle;
-    var inspectStyle = stylegen.generateInspectStyle(originalStyle, []);
-    var watcher = new LayerWatcher({
-      onSourcesChange: function(sources) {
-        var coloredLayers = stylegen.generateColoredLayers(sources);
-        inspectStyle = stylegen.generateInspectStyle(map.getStyle(), coloredLayers);
-      }
-    });
-
-    triggerAnalyze = function(e) {
-      watcher.analyzeMap(map);
-    }
-
-    map.on("tiledata", triggerAnalyze);
-    map.on("sourcedata", triggerAnalyze);
-    map.on("load", triggerAnalyze);
-
-    this._map = map;
-    this._container = InspectToggle({
-      onToggle: function(enable) {
-        if(enable) {
-          originalStyle = map.getStyle();
-          map.setStyle(inspectStyle);
-        } else {
-          map.setStyle(originalStyle);
-        }
-      }
-    });
-    return this._container;
-  };
-
-  this.onRemove = function() {
-     this._map.off("tiledata", triggerAnalyze);
-     this._map.off("sourcedata", triggerAnalyze);
-     this._map.off("load", triggerAnalyze);
-
-     this._container.parentNode.removeChild(this._container);
-     this._map = undefined;
-  };
+  this.inspectorEnabled = options.enabled || false;
+  this._originalStyle = emptyStyle;
+  this._inspectStyle = emptyStyle;
+  this._sources = {};
+  this._toggle = new InspectToggle({
+    onToggle: this.toggleInspector.bind(this)
+  });
 }
+
+MapboxInspector.prototype.toggleInspector = function() {
+  if(!this.inspectorEnabled) {
+    this._originalStyle = this._map.getStyle();
+  }
+  this.inspectorEnabled = !this.inspectorEnabled;
+  this._renderInspector();
+};
+
+MapboxInspector.prototype._renderInspector = function() {
+  if(this.inspectorEnabled) {
+    console.log('set Style', this._map, this._inspectStyle);
+    this._map.setStyle(this._inspectStyle);
+    this._toggle.setMapIcon();
+  } else {
+    console.log('set Style', this._map, this._originalStyle);
+    this._map.setStyle(this._originalStyle);
+    this._toggle.setInspectIcon();
+  }
+};
+
+MapboxInspector.prototype._onSourceChange = function() {
+  var sources = this._sources;
+  var map = this._map;
+  var previousSources = Object.assign({}, sources);
+
+  //NOTE: This heavily depends on the internal API of Mapbox GL
+  //so this breaks between Mapbox GL JS releases
+  Object.keys(map.style.sourceCaches).forEach(function(sourceId) {
+    sources[sourceId] = map.style.sourceCaches[sourceId]._source.vectorLayerIds;
+  })
+
+  if(!isEqual(previousSources, sources)) {
+    var coloredLayers = stylegen.generateColoredLayers(sources);
+    this._inspectStyle = stylegen.generateInspectStyle(map.getStyle(), coloredLayers);
+  }
+};
+
+MapboxInspector.prototype._onMapLoad = function() {
+  this._originalStyle = this._map.getStyle();
+  this._renderInspector();
+}
+
+MapboxInspector.prototype.onAdd = function(map) {
+  this._map = map;
+
+  map.on("tiledata", this._onSourceChange.bind(this));
+  map.on("sourcedata", this._onSourceChange.bind(this));
+  map.on("load", this._onMapLoad.bind(this));
+
+  return this._toggle.elem;
+};
+
+MapboxInspector.prototype.onRemove = function() {
+  //TODO: No unsubscribing of map events. How bad is that?
+  this._toggle.elem.parentNode.removeChild(this._container);
+  this._map = undefined;
+};
 
 module.exports = MapboxInspector;
