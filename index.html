@@ -19,7 +19,17 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibW9yZ2Vua2FmZmVlIiwiYSI6IjIzcmN0NlkifQ.0LRTNgCc-envt9d5MzR75w';
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+    //style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+    style: {
+      version: 8,
+      layers: [],
+      sources: {
+        'provinces': {
+          data: 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_1_states_provinces_shp.geojson',
+          type: 'geojson'
+        }
+      }
+    },
     center: [-74.50, 40], // starting position
     zoom: 9 // starting zoom
 });

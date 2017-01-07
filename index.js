@@ -7,7 +7,7 @@ var MapIcon = require('./lib/mapicon');
 var emptyStyle = {
   version: 8,
   layers: [],
-  sources: []
+  sources: {}
 };
 
 function InspectToggle(opts) {
@@ -27,7 +27,6 @@ function InspectToggle(opts) {
       btn.style['background-image'] = 'url(data:image/svg+xml;charset=utf8,' + encodeURI(InspectIcon) + ')';
     }
     opts.onToggle(enabled);
-    console.log('Enable inspect')
   }
 
   var container = document.createElement('div');
@@ -40,6 +39,9 @@ function MapboxInspector(options) {
   if (!(this instanceof MapboxInspector)) {
     throw new Error("MapboxInspector needs to be called with the new keyword");
   }
+
+  var triggerAnalyze = null;
+
   this.onAdd = function(map) {
     var originalStyle = emptyStyle;
     var inspectStyle = stylegen.generateInspectStyle(originalStyle, []);
@@ -50,11 +52,13 @@ function MapboxInspector(options) {
       }
     });
 
-    //TODO: We need to unsubscribe on remove
-    map.on("data", function(e) {
-      if(e.dataType !== 'tile') return;
+    triggerAnalyze = function(e) {
       watcher.analyzeMap(map);
-    });
+    }
+
+    map.on("tiledata", triggerAnalyze);
+    map.on("sourcedata", triggerAnalyze);
+    map.on("load", triggerAnalyze);
 
     this._map = map;
     this._container = InspectToggle({
@@ -71,6 +75,10 @@ function MapboxInspector(options) {
   };
 
   this.onRemove = function() {
+     this._map.off("tiledata", triggerAnalyze);
+     this._map.off("sourcedata", triggerAnalyze);
+     this._map.off("load", triggerAnalyze);
+
      this._container.parentNode.removeChild(this._container);
      this._map = undefined;
   };
