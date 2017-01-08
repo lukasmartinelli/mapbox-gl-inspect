@@ -3,6 +3,8 @@
 Add an inspect control to [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) to view all features
 of the vector sources and allows hovering over features to see their properties.
 
+**Requires [mapbox-gl-js](https://github.com/mapbox/mapbox-gl-js) (version 0.29.0 – 0.30.x).**
+
 ![Mapbox GL Inspect Preview](https://cloud.githubusercontent.com/assets/1288339/21744637/11759412-d51a-11e6-9581-f26741fcd182.gif)
 
 ## Usage
@@ -11,10 +13,26 @@ of the vector sources and allows hovering over features to see their properties.
 
 Make sure to include the CSS and JS files.
 
+**When using a CDN**
+
 ```html
 <script src='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
 <link href='http://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />
 ```
+
+**When using modules**
+
+``js
+require('mapbox-gl-inspect/dist/mapbox-gl-inspect.css');
+var mapboxgl = require('mapbox-gl');
+var MapboxInspect = require('mapbox-gl-inspect');
+
+// Pass mapboxgl library to the inspect plugin for creating the popup
+map.addControl(new MapboxInspect({
+  mapboxgl: mapboxgl
+}));
+```
+
 
 Add the inspector control to your map.
 
