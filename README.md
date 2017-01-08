@@ -27,12 +27,14 @@ require('mapbox-gl-inspect/dist/mapbox-gl-inspect.css');
 var mapboxgl = require('mapbox-gl');
 var MapboxInspect = require('mapbox-gl-inspect');
 
-// Pass mapboxgl library to the inspect plugin for creating the popup
+// Pass an initialized popup to Mapbox GL
 map.addControl(new MapboxInspect({
-  mapboxgl: mapboxgl
+  popup: new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  })
 }));
 ```
-
 
 Add the inspector control to your map.
 
