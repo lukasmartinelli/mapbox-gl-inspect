@@ -26,7 +26,9 @@ var map = new mapboxgl.Map({
     hash: true
 });
 map.addControl(new mapboxgl.NavigationControl());
-map.addControl(new MapboxInspector({ enabled: true }));
+map.addControl(new MapboxInspect({
+  showInspectMap: true
+}));
 </script>
 
 </body>

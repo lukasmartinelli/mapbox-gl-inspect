@@ -19,22 +19,32 @@ Make sure to include the CSS and JS files.
 Add the inspector control to your map.
 
 ```javascript
-map.addControl(new MapboxInspector());
+map.addControl(new MapboxInspect());
 ```
 
-Enable the inspection map by default.
+Switch to the inspection map by default.
 
 ```javascript
-map.addControl(new MapboxInspector({
-  enabled: true
+map.addControl(new MapboxInspect({
+  showInspectMap: true
 }));
 ```
 
-Disable the feature Popup in inspection mode.
+Switch to the inspection map by default and hide the inspect button to switch back to the normal map. Check [`examples/inspect-only.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/inspect-only.html).
+
 
 ```javascript
-map.addControl(new MapboxInspector({
-  popupEnabled: false
+map.addControl(new MapboxInspect({
+  showInspectMap: true,
+  showInspectButton: false
+}));
+```
+
+Disable the feature Popup in inspection mode. Check [`examples/no-popup.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/no-popup.html).
+
+```javascript
+map.addControl(new MapboxInspect({
+  showPopup: false
 }));
 ```
 
@@ -42,20 +52,19 @@ You are able to control the generated colors and background of the inspection st
 Check [`examples/custom-color-1.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-1.html) and [`examples/custom-color-2.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-2.html).
 
 ```javascript
-var colors = ['#FC49A3', '#CC66FF', '#66CCFF', '#66FFCC', '#00FF00', '#FFCC66', '#FF6666', '#FF0000', '#FF8000', '#FFFF66', '#00FFFF'];
-map.addControl(new MapboxInspector({
+var colors = ['#FC49A3', '#CC66FF', '#66CCFF', '#66FFCC'];
+map.addControl(new MapboxInspect({
   backgroundColor: '#000',
   assignLayerColor: function(layerId, alpha) {
-      //In more advanced coloring functions you use the layerId as seed value
-      var randomNumber = parseInt(Math.random() * colors.length);
-      return colors[randomNumber];
-	}
+    var randomNumber = parseInt(Math.random() * colors.length);
+    return colors[randomNumber];
+   }
 }));
 ```
 
 ## Develop
 
-Run linter and watch for changes to rebuild with browserify.
+Run the linter and watch for changes to rebuild with browserify.
 
 ```
 npm install
