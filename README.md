@@ -68,6 +68,17 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+You can also control the Popup output. Check [`examples/custom-popup.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-popup.html).
+
+```javascript
+map.addControl(new MapboxInspect({
+  renderPopup: function(features) {
+    return '<h1>' + features.length + '</h1>';
+  }
+}));
+```
+
+
 You are able to control the generated colors and background of the inspection style.
 Check [`examples/custom-color-1.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-1.html) and [`examples/custom-color-2.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-2.html).
 
