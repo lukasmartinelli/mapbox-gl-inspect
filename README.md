@@ -60,11 +60,12 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
-Disable the feature Popup in inspection mode. Check [`examples/no-popup.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/no-popup.html).
+Disable the feature Popup in inspection mode and in map mode. Check [`examples/no-popup.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/no-popup.html).
 
 ```javascript
 map.addControl(new MapboxInspect({
-  showPopup: false
+  showInspectMapPopup: false,
+  showMapPopup: false
 }));
 ```
 
