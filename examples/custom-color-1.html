@@ -27,23 +27,23 @@ var map = new mapboxgl.Map({
 });
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new MapboxInspect({
-	enabled: true,
+  showInspectMap: true,
   backgroundColor: '#000',
   assignLayerColor: function(layerId, alpha) {
     var rgb = [0, 0, 0, alpha];
-		try {
-			for (var i = 0; i < layerId.length; i++) {
-				var v = layerId.charCodeAt(i);
-				var idx = v % 3;
-				rgb[idx] = (rgb[i % 3] + (13 * (v % 13))) % 20;
-			}
-		} finally {
-		  return 'rgba(' +
-				rgb.map(function(c, idx) {
-					return idx === 3 ? c : (4 + c) * 17;
-				}).join(',') + ')';
-		}
-	}
+    try {
+      for (var i = 0; i < layerId.length; i++) {
+        var v = layerId.charCodeAt(i);
+        var idx = v % 3;
+        rgb[idx] = (rgb[i % 3] + (13 * (v % 13))) % 20;
+      }
+    } finally {
+      return 'rgba(' +
+        rgb.map(function(c, idx) {
+          return idx === 3 ? c : (4 + c) * 17;
+        }).join(',') + ')';
+    }
+  }
 }));
 </script>
 

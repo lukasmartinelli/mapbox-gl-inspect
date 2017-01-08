@@ -20,35 +20,15 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibW9yZ2Vua2FmZmVlIiwiYSI6IjIzcmN0NlkifQ.0LRTNgCc-envt9d5MzR75w';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/bright-v9',
     center: [-74.50, 40],
     zoom: 3,
     hash: true
 });
-
-
-var colors = [
-  '#FC49A3',
-  '#CC66FF',
-  '#66CCFF',
-  '#66FFCC',
-  '#00FF00',
-  '#FFCC66',
-  '#FF6666',
-  '#FF0000',
-  '#FF8000',
-  '#FFFF66',
-  '#00FFFF'
-];
-
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new MapboxInspect({
   showInspectMap: true,
-  backgroundColor: '#000',
-  assignLayerColor: function(layerId, alpha) {
-    var randomNumber = parseInt(Math.random() * colors.length);
-    return colors[randomNumber];
-  }
+  showPopup: false
 }));
 </script>
 

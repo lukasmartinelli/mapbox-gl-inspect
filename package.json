@@ -6,7 +6,8 @@
   "scripts": {
     "test": "eslint lib && eslint index.js",
     "watch": "mkdir -p dist && watchify index.js --debug -v --standalone MapboxInspect -o dist/mapbox-gl-inspect.js",
-    "build": "mkdir -p dist && NODE_ENV=production browserify index.js --standalone MapboxInspect | uglifyjs - --screw-ie8 --compress --mangle -o dist/mapbox-gl-inspect.min.js"
+    "build": "mkdir -p dist && NODE_ENV=production browserify index.js --standalone MapboxInspect | uglifyjs - --screw-ie8 --compress --mangle -o dist/mapbox-gl-inspect.min.js",
+    "docs": "documentation build lib/MapboxInspect.js --shallow --format=md > API.md"
   },
   "repository": {
     "type": "git",
@@ -31,9 +32,11 @@
   },
   "devDependencies": {
     "browserify": "^11.2.0",
+    "documentation": "^4.0.0-beta.18",
     "eslint": "^2.8.0",
     "eslint-config-mourner": "^2.0.1",
-    "uglify-js": "^2.4.24"
+    "uglify-js": "^2.4.24",
+    "watchify": "^3.8.0"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -44,7 +47,10 @@
     },
     "extends": "mourner",
     "rules": {
-      "indent": [2, 2]
+      "indent": [
+        2,
+        2
+      ]
     }
   }
 }
