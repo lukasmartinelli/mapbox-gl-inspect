@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-inspect",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Mapbox GL JS plugin for inspecting vector data",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,9 @@
     "eslint-config-mourner": "^2.0.1",
     "uglify-js": "^2.4.24",
     "watchify": "^3.8.0"
+  },
+  "peerDependencies": {
+    "mapbox-gl": "^0.29.0 || ^0.30.0"
   },
   "eslintConfig": {
     "parserOptions": {
