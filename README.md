@@ -19,13 +19,13 @@ Make sure to include the CSS and JS files.
 Add the inspector control to your map.
 
 ```javascript
-map.addControl(new MapboxInspector());
+map.addControl(new MapboxInspect());
 ```
 
 Enable the inspection map by default.
 
 ```javascript
-map.addControl(new MapboxInspector({
+map.addControl(new MapboxInspect({
   enabled: true
 }));
 ```
@@ -33,7 +33,7 @@ map.addControl(new MapboxInspector({
 Disable the feature Popup in inspection mode.
 
 ```javascript
-map.addControl(new MapboxInspector({
+map.addControl(new MapboxInspect({
   popupEnabled: false
 }));
 ```
@@ -43,7 +43,7 @@ Check [`examples/custom-color-1.html`](http://mapbox-gl-inspect.lukasmartinelli.
 
 ```javascript
 var colors = ['#FC49A3', '#CC66FF', '#66CCFF', '#66FFCC', '#00FF00', '#FFCC66', '#FF6666', '#FF0000', '#FF8000', '#FFFF66', '#00FFFF'];
-map.addControl(new MapboxInspector({
+map.addControl(new MapboxInspect({
   backgroundColor: '#000',
   assignLayerColor: function(layerId, alpha) {
       //In more advanced coloring functions you use the layerId as seed value
