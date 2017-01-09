@@ -29,20 +29,19 @@ map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new MapboxInspect({
   showInspectMap: true,
   backgroundColor: '#000',
-  assignLayerColor: function(layerId, alpha) {
-    var rgb = [0, 0, 0, alpha];
-    try {
-      for (var i = 0; i < layerId.length; i++) {
-        var v = layerId.charCodeAt(i);
-        var idx = v % 3;
-        rgb[idx] = (rgb[i % 3] + (13 * (v % 13))) % 20;
-      }
-    } finally {
-      return 'rgba(' +
-        rgb.map(function(c, idx) {
-          return idx === 3 ? c : (4 + c) * 17;
-        }).join(',') + ')';
+  assignLayerColor: function generateColor(str) {
+    var rgb = [0, 0, 0];
+    for (var i = 0; i < str.length; i++) {
+        var v = str.charCodeAt(i);
+        rgb[v % 3] = (rgb[i % 3] + (13*(v%13))) % 12;
     }
+    var r = 4 + rgb[0];
+    var g = 4 + rgb[1];
+    var b = 4 + rgb[2];
+    r = (r * 16) + r;
+    g = (g * 16) + g;
+    b = (b * 16) + b;
+    return 'rgba(' + [r, g, b, 1].join(',') + ')';
   }
 }));
 </script>
