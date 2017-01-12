@@ -94,6 +94,28 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+You can pass a `queryParameters` object structured like the parameters object documented for [`map.queryRenderedFeatures`](https://www.mapbox.com/mapbox-gl-js/api/#Map#queryRenderedFeatures).
+This let's you show the inspect popup for only certain layers.
+
+```js
+map.addControl(new MapboxInspect({
+  queryParameters: {
+    layers: ['composite_road_line']
+  }
+}));
+```
+
+You can also use this feature to do custom layer [filtering](https://www.mapbox.com/mapbox-gl-style-spec/#types-filter).
+
+```js
+map.addControl(new MapboxInspect({
+  queryParameters: {
+    filter: ['>', 'height', 10]
+  } 
+}));
+```
+
+
 ## Develop
 
 Run the linter and watch for changes to rebuild with browserify.
