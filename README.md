@@ -95,6 +95,8 @@ map.addControl(new MapboxInspect({
 ```
 
 You can also hide the inspect button and enable the popup on the map if just want the popup hovering feature in your normal map but no inspect style.
+Check [`examples/no-inspect-style.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/no-inspect-style.html).
+
 
 ```js
 map.addControl(new MapboxInspect({
