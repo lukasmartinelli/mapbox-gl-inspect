@@ -111,11 +111,13 @@ You can also use this feature to do custom layer [filtering](https://www.mapbox.
 map.addControl(new MapboxInspect({
   queryParameters: {
     filter: ['>', 'height', 10]
-  } 
+  }
 }));
 ```
 
 If inspecting features is too fiddly for thin lines you can optionally set a custom pixel buffer around the pointer when querying for features to make inspection a bit more forgiving.
+Check [`examples/less-fidly.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/less-fidly.html).
+
 
 ```js
 map.addControl(new MapboxInspect({
