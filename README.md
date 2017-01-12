@@ -96,6 +96,8 @@ map.addControl(new MapboxInspect({
 
 You can pass a `queryParameters` object structured like the parameters object documented for [`map.queryRenderedFeatures`](https://www.mapbox.com/mapbox-gl-js/api/#Map#queryRenderedFeatures).
 This let's you show the inspect popup for only certain layers.
+Check [`examples/query-params.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/query-params.html).
+
 
 ```js
 map.addControl(new MapboxInspect({
