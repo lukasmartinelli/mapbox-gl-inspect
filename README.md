@@ -96,6 +96,8 @@ map.addControl(new MapboxInspect({
 
 You can pass a `queryParameters` object structured like the parameters object documented for [`map.queryRenderedFeatures`](https://www.mapbox.com/mapbox-gl-js/api/#Map#queryRenderedFeatures).
 This let's you show the inspect popup for only certain layers.
+Check [`examples/query-params.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/query-params.html).
+
 
 ```js
 map.addControl(new MapboxInspect({
@@ -111,11 +113,13 @@ You can also use this feature to do custom layer [filtering](https://www.mapbox.
 map.addControl(new MapboxInspect({
   queryParameters: {
     filter: ['>', 'height', 10]
-  } 
+  }
 }));
 ```
 
 If inspecting features is too fiddly for thin lines you can optionally set a custom pixel buffer around the pointer when querying for features to make inspection a bit more forgiving.
+Check [`examples/less-fidly.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/less-fidly.html).
+
 
 ```js
 map.addControl(new MapboxInspect({
