@@ -3,7 +3,7 @@
 Add an inspect control to [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) to view all features
 of the vector sources and allows hovering over features to see their properties.
 
-**Requires [mapbox-gl-js](https://github.com/mapbox/mapbox-gl-js) (version 0.29.0 – 0.30.x).**
+**Requires [mapbox-gl-js](https://github.com/mapbox/mapbox-gl-js) (version 0.29.0 – 0.31.x).**
 
 ![Mapbox GL Inspect Preview](https://cloud.githubusercontent.com/assets/1288339/21744637/11759412-d51a-11e6-9581-f26741fcd182.gif)
 
