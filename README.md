@@ -36,11 +36,17 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
-Add the inspector control to your map.
+
+### Add Inspect Control
+
+Add the inspect control to your map.
 
 ```javascript
 map.addControl(new MapboxInspect());
 ```
+
+
+### Show Inspection Map
 
 Switch to the inspection map by default.
 
@@ -49,6 +55,8 @@ map.addControl(new MapboxInspect({
   showInspectMap: true
 }));
 ```
+
+### Show only Inspection Mode
 
 Switch to the inspection map by default and hide the inspect button to switch back to the normal map. Check [`examples/inspect-only.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/inspect-only.html).
 
@@ -60,6 +68,8 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+### Disable Popup
+
 Disable the feature Popup in inspection mode and in map mode. Check [`examples/no-popup.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/no-popup.html).
 
 ```javascript
@@ -68,6 +78,8 @@ map.addControl(new MapboxInspect({
   showMapPopup: false
 }));
 ```
+
+### Custom Popup Function
 
 You can also control the Popup output. Check [`examples/custom-popup.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-popup.html).
 
@@ -79,6 +91,7 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+### Custom Color Function
 
 You are able to control the generated colors and background of the inspection style.
 Check [`examples/custom-color-1.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-1.html) and [`examples/custom-color-2.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/custom-color-2.html).
@@ -94,7 +107,11 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+### Show just Popup but no Inspect Style
+
 You can also hide the inspect button and enable the popup on the map if just want the popup hovering feature in your normal map but no inspect style.
+Check [`examples/no-inspect-style.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/no-inspect-style.html).
+
 
 ```js
 map.addControl(new MapboxInspect({
@@ -102,6 +119,8 @@ map.addControl(new MapboxInspect({
   showMapPopup: true
 }));
 ```
+
+### Show Popup only for certain Features
 
 You can pass a `queryParameters` object structured like the parameters object documented for [`map.queryRenderedFeatures`](https://www.mapbox.com/mapbox-gl-js/api/#Map#queryRenderedFeatures).
 This let's you show the inspect popup for only certain layers.
@@ -125,6 +144,8 @@ map.addControl(new MapboxInspect({
   }
 }));
 ```
+
+### Less Fidly Popup
 
 If inspecting features is too fiddly for thin lines you can optionally set a custom pixel buffer around the pointer when querying for features to make inspection a bit more forgiving.
 Check [`examples/less-fidly.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/less-fidly.html).
