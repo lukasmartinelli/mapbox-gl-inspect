@@ -94,6 +94,15 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+You can also hide the inspect button and enable the popup on the map if just want the popup hovering feature in your normal map but no inspect style.
+
+```js
+map.addControl(new MapboxInspect({
+  showInspectButton: false,
+  showMapPopup: true
+}));
+```
+
 You can pass a `queryParameters` object structured like the parameters object documented for [`map.queryRenderedFeatures`](https://www.mapbox.com/mapbox-gl-js/api/#Map#queryRenderedFeatures).
 This let's you show the inspect popup for only certain layers.
 Check [`examples/query-params.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/query-params.html).
