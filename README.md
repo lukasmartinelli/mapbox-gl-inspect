@@ -115,6 +115,13 @@ map.addControl(new MapboxInspect({
 }));
 ```
 
+If inspecting features is too fiddly for thin lines you can optionally set a custom pixel buffer around the pointer when querying for features to make inspection a bit more forgiving.
+
+```js
+map.addControl(new MapboxInspect({
+  selectThreshold: 50
+});
+```
 
 ## Develop
 
