@@ -22,7 +22,7 @@ Make sure to include the CSS and JS files.
 
 **When using modules**
 
-``js
+```js
 require('mapbox-gl-inspect/dist/mapbox-gl-inspect.css');
 var mapboxgl = require('mapbox-gl');
 var MapboxInspect = require('mapbox-gl-inspect');
