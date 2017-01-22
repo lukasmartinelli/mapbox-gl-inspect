@@ -157,6 +157,20 @@ map.addControl(new MapboxInspect({
 });
 ```
 
+### Show Popup only on Click not on Hovering
+
+Do not show the inspect popup when hovering over the map but only when clicking on the map.
+Check [`examples/popup-on-click.html`](http://mapbox-gl-inspect.lukasmartinelli.ch/examples/popup-on-click.html).
+
+
+```js
+map.addControl(new MapboxInspect({
+  showMapPopup: true,
+  showMapPopupOnHover: false,
+  showInspectMapPopupOnHover: false
+});
+```
+
 ## Develop
 
 Run the linter and watch for changes to rebuild with browserify.
