@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-inspect",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Mapbox GL JS plugin for inspecting vector data",
   "main": "index.js",
   "scripts": {
