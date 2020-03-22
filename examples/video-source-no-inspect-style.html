@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Mapbox GL Inspect</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!-- 1.8.0 because 0.40.1 doesn't play videos correctly -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='/dist/mapbox-gl-inspect.js'></script>
+    <link href='/dist/mapbox-gl-inspect.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: {
+      "version": 8,
+      "center": [-122.514426, 37.562984],
+      "zoom": 17,
+      "bearing": 0,
+      "pitch": 0,
+      "sources": {
+        'video': {
+          'type': 'video',
+          'urls': [
+            'https://static-assets.mapbox.com/mapbox-gl-js/drone.mp4',
+            'https://static-assets.mapbox.com/mapbox-gl-js/drone.webm'
+          ],
+          'coordinates': [
+            [-122.51596391201019, 37.56238816766053],
+            [-122.51467645168304, 37.56410183312965],
+            [-122.51309394836426, 37.563391708549425],
+            [-122.51423120498657, 37.56161849366671]
+          ]
+        }
+      },
+      "layers": [
+        {
+          'id': 'video',
+          'type': 'raster',
+          'source': 'video'
+        }
+      ]
+    },
+    hash: true
+});
+map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new MapboxInspect({
+  showInspectButton: false,
+  showMapPopup: true
+}));
+
+</script>
+
+</body>
+</html>
