@@ -16,8 +16,8 @@ Make sure to include the CSS and JS files.
 **When using a CDN**
 
 ```html
-<script src='https://github.com/lukasmartinelli/mapbox-gl-inspect/releases/download/v1.3.1/mapbox-gl-inspect.js'></script>
-<link href='https://github.com/lukasmartinelli/mapbox-gl-inspect/releases/download/v1.3.1/mapbox-gl-inspect.css' rel='stylesheet' />
+<script src='https://unpkg.com/mapbox-gl-inspect@1.3.1/dist/mapbox-gl-inspect.min.js'></script>
+<link href='https://unpkg.com/mapbox-gl-inspect@1.3.1/dist/mapbox-gl-inspect.css' rel='stylesheet' />
 ```
 
 **When using modules**
